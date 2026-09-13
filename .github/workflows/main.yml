@@ -24,23 +24,23 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Create Android Platform Files
-        run: flutter create --platforms=android .
+      - name: Create Android project structure
+        run: flutter create . --platforms=android --org com.example.vocabapp
 
-      - name: Fix compileSdkVersion to 34
+      - name: Force API level 34 in build.gradle
         run: |
-          python3 -c "
-          path = 'android/app/build.gradle'
-          with open(path, 'r') as f:
-              content = f.read()
-          import re
-          content = re.sub(r'compileSdk\s*=?:?\s*\d+', 'compileSdk 34', content)
-          content = re.sub(r'compileSdkVersion\s*=?:?\s*\d+', 'compileSdkVersion 34', content)
-          content = re.sub(r'targetSdk\s*=?:?\s*\d+', 'targetSdk 34', content)
-          content = re.sub(r'targetSdkVersion\s*=?:?\s*\d+', 'targetSdkVersion 34', content)
-          with open(path, 'w') as f:
-              f.write(content)
-          "
+          BUILD_FILE="android/app/build.gradle"
+          if [ -f "$BUILD_FILE" ]; then
+            echo "File found, updating SDK versions..."
+            sed -i 's/compileSdkVersion.*/compileSdkVersion 34/g' "$BUILD_FILE"
+            sed -i 's/compileSdk =.*/compileSdk = 34/g' "$BUILD_FILE"
+            sed -i 's/compileSdk:.*/compileSdk: 34/g' "$BUILD_FILE"
+            sed -i 's/targetSdkVersion.*/targetSdkVersion 34/g' "$BUILD_FILE"
+            sed -i 's/targetSdk =.*/targetSdk = 34/g' "$BUILD_FILE"
+          else
+            echo "build.gradle not found!"
+            exit 1
+          fi
 
       - name: Install dependencies
         run: flutter pub get
