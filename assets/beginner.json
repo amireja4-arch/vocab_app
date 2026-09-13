@@ -1,0 +1,32 @@
+[
+  {
+    "word": "Always",
+    "phonetic": "/ˈɔːl.weɪz/",
+    "meaning": "همیشه، همواره",
+    "example": "She always arrives on time."
+  },
+  {
+    "word": "Beautiful",
+    "phonetic": "/ˈbjuː.tɪ.fəl/",
+    "meaning": "زیبا، قشنگ",
+    "example": "The sunrise is beautiful."
+  },
+  {
+    "word": "Friend",
+    "phonetic": "/frend/",
+    "meaning": "دوست، رفیق",
+    "example": "He is my best friend."
+  },
+  {
+    "word": "Happy",
+    "phonetic": "/ˈhæp.i/",
+    "meaning": "خوشحال، شاد",
+    "example": "They were happy with the results."
+  },
+  {
+    "word": "Family",
+    "phonetic": "/ˈfæm.əl.i/",
+    "meaning": "خانواده",
+    "example": "I love spending time with my family."
+  }
+]
