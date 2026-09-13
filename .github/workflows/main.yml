@@ -23,13 +23,15 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          cache: true
+
+      - name: Create Android Platform Files
+        run: flutter create --platforms=android .
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build APK with Verbose Logs
-        run: flutter build apk --release --verbose
+      - name: Build APK
+        run: flutter build apk --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
